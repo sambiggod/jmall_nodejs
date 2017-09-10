@@ -1,0 +1,2 @@
+# jmall_nodejs
+使用nodejs实现jamll的service，为前端提供服务Restful Api接口。比较nodejs与Java服务的实现区别。mysql数据库，koa2框架，webpack2打包。
