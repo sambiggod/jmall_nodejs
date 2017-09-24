@@ -36,14 +36,13 @@ const pool = mysql.createPool({
 });
 
 // 在数据池中进行会话操作
-
-
 let query = function (sql, values) {
     return new Promise((resolve, reject) => {
         pool.getConnection((err, connection) => {
             if(err){
                 resolve(err);
             }else{
+                console.log(sql);
                 connection.query(sql, values, (error, results, field) => {
                     if(error){
                         reject(error);

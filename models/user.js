@@ -16,6 +16,7 @@ class User {
         this.update_time = new Date(0);
     }
 
+
     get id() {
         return this._id;
     }

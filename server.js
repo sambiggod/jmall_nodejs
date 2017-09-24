@@ -16,16 +16,16 @@ const apiRouter = require("./routers/index");
 // push lib function to koa instance
 const app = new koa();
 
-//config bodyparser
+//配置ctx.body解析中间件
 app.use(bodyParser());
 
-//config static resource
+//common static resource
 const staticPath = "./static";
 app.use(static(
     path.join(__dirname, staticPath)
 ));
 
-// config routers
+// common routers
 // const appRouter = new router({
 //     prefix: "jmall"
 // });
