@@ -11,14 +11,16 @@ module.exports = {
     // 登录验证信息
     async login(ctx){
         let formData = ctx.request.body;
-        console.log("formdata: ")
-        console.log(ctx)
         ctx.body = await UserService.signIn(formData)
     },
     // 注册新用户
     async register(ctx){
         let formData = ctx.request.body;
         ctx.body = await UserService.signUp(formData);
+    },
+    // 校验用户信息，username或email
+    async checkValid(){
+
     },
     // 忘记密码，获取问题
     async forgetPassword(){

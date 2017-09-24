@@ -36,10 +36,10 @@ module.exports = {
         return ret.length;
     },
 
-    async getExistOneByUsername(userModel){
+    async getExistOneByUsername(username){
         let sql = "";
         sql = `SELECT * from mmall_user where username=？`;
-        let ret = await DBUtil.query(sql, userModel.username);
+        let ret = await DBUtil.query(sql, username);
         return ret.length;
     },
 
