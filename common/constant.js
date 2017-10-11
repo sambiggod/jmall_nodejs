@@ -18,6 +18,13 @@ const  statusCode = {
     FAIL_USER_NO_LOGIN: '用户未登录',
 
     FAIL_USER_NO_EXIST: '用户不存在',
+
+    SUCCESS_REGISTER_USER: '用户注册成功',
+
+    // 管理员用户
+    IS_ADMIN_USER: 1,
+    // 普通用户
+    IS_ORDINARY_USER: 0
 };
 
 module.exports = statusCode;

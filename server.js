@@ -19,13 +19,13 @@ const app = new koa();
 //配置ctx.body解析中间件
 app.use(bodyParser());
 
-//common static resource
+//config static resource
 const staticPath = "./static";
 app.use(static(
     path.join(__dirname, staticPath)
 ));
 
-// common routers
+// config routers
 // const appRouter = new router({
 //     prefix: "jmall"
 // });

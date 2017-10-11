@@ -4,11 +4,16 @@
   "description": "backend",
   "main": "server.js",
   "dependencies": {
+    "axios": "^0.16.2",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
-    "mysql": "^2.14.1"
+    "mysql": "^2.14.1",
+    "vue": "^2.4.4",
+    "vue-i18n": "^7.3.1",
+    "vue-router": "^2.7.0",
+    "vuex": "^2.4.1"
   },
   "devDependencies": {},
   "scripts": {

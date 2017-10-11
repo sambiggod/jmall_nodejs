@@ -5,6 +5,7 @@ const UserDao = require("../dao/userDao.js");
 const User = require("../models/user.js");
 const MD5Utils = require("../common/md5Util");
 const ServerResponse = require("../common/response");
+const Constant = require('../common/Constant');
 
 // 负责调用dao接口，以及组织从数据库读取数据的逻辑,转换数据的格式
 module.exports = {
@@ -28,12 +29,11 @@ module.exports = {
         }
         return ret;
     },
-    //先验证用户名是否存在，然后验证用户名及密码
     async signIn(user){
         let ret = "";
         ret = await UserDao.getExistOneByUsername(user.username);
         if(!ret)
-            return ServerResponse.createResponse(0, "该用户名不存在");
+            return ServerResponse.createResponse(0, Constant.FAIL_USER_NO_EXIST);
 
         let resultData = await UserDao.checkUserByNameAndPassword({
             "username": user.username,
@@ -42,16 +42,36 @@ module.exports = {
         return ServerResponse.createResponse(1, "success", resultData);
     },
     async signUp(user){
+        // check username is existed
+        let userRet = await UserDao.getExistOneByUsername(user.username);
+        if(userRet)
+          return ServerResponse.createResponse(0, Constant.FAIL_USER_NAME_IS_EXIST);
+        // check email is existed
+        let emailRet = await UserDao.getExistOneByEmail(user.email);
+        if(emailRet)
+          return ServerResponse.createResponse(0, Constant.FAIL_EMAIL_IS_EXIST);
+
         let retData = await UserDao.createUser({
             "username": user.username,
             "password": MD5Utils.getEncryptedStringByMD5(user.password),
-            "role":"1"
+            "email": user.email,
+            "role": Constant.IS_ADMIN_USER
         });
-        return retData;
+        if(retData)
+          return ServerResponse.createResponse(1, "success", Constant.SUCCESS_REGISTER_USER);
     },
 
     async signOut(){
 
+    },
+    async getUserQuestion(user){
+      let ret = UserDao.getQuestionByUsername(user);
+      if(ret)
+        return ServerResponse.createResponse(1,{"question":ret.question})
+    },
+
+    async checkAnswer(user){
+      let ret = UserDao.getUserByAnswer(user)
     },
 
     async resetPassword(){

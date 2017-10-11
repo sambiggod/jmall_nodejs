@@ -1,0 +1,9 @@
+<style>
+</style>
+<template>
+    <div>
+      register
+    </div>
+</template>
+<script>
+</script>

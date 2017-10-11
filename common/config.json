@@ -1,0 +1,9 @@
+module.exports = {
+  "db": {
+    "host": "127.0.0.1",
+    "user": "root",
+    "password": "dfyb",
+    "port": "3306",
+    "database": "mmall_learning"
+  }
+}

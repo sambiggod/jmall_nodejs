@@ -16,4 +16,3 @@ router.get('/getAllUser', userController.getAllUser)
 
 
 module.exports = router;
-
