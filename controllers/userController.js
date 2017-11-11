@@ -10,6 +10,7 @@ module.exports = {
     },
     // 登录验证信息
     async login(ctx){
+        console.log(ctx.request.body);
         let formData = ctx.request.body;
         ctx.body = await UserService.signIn(formData)
     },

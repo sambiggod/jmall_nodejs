@@ -33,23 +33,23 @@ module.exports = {
         let ret = "";
         ret = await UserDao.getExistOneByUsername(user.username);
         if(!ret)
-            return ServerResponse.createResponse(0, Constant.FAIL_USER_NO_EXIST);
+            return ServerResponse.createResponse(Constant.FAIL_CODE, Constant.FAIL_USER_NO_EXIST);
 
         let resultData = await UserDao.checkUserByNameAndPassword({
             "username": user.username,
             "password": MD5Utils.getEncryptedStringByMD5(user.password)
         });
-        return ServerResponse.createResponse(1, "success", resultData);
+        return ServerResponse.createResponse(Constant.SUCCESS_CODE, Constant.SUCCESS_STATUS, resultData);
     },
     async signUp(user){
         // check username is existed
         let userRet = await UserDao.getExistOneByUsername(user.username);
         if(userRet)
-          return ServerResponse.createResponse(0, Constant.FAIL_USER_NAME_IS_EXIST);
+          return ServerResponse.createResponse(Constant.FAIL_CODE, Constant.FAIL_USER_NAME_IS_EXIST);
         // check email is existed
         let emailRet = await UserDao.getExistOneByEmail(user.email);
         if(emailRet)
-          return ServerResponse.createResponse(0, Constant.FAIL_EMAIL_IS_EXIST);
+          return ServerResponse.createResponse(Constant.FAIL_CODE, Constant.FAIL_EMAIL_IS_EXIST);
 
         let retData = await UserDao.createUser({
             "username": user.username,
@@ -58,7 +58,7 @@ module.exports = {
             "role": Constant.IS_ADMIN_USER
         });
         if(retData)
-          return ServerResponse.createResponse(1, "success", Constant.SUCCESS_REGISTER_USER);
+          return ServerResponse.createResponse(Constant.SUCCESS_CODE, "success", Constant.SUCCESS_REGISTER_USER);
     },
 
     async signOut(){
@@ -67,7 +67,7 @@ module.exports = {
     async getUserQuestion(user){
       let ret = UserDao.getQuestionByUsername(user);
       if(ret)
-        return ServerResponse.createResponse(1,{"question":ret.question})
+        return ServerResponse.createResponse(Constant.SUCCESS_CODE,{"question":ret.question})
     },
 
     async checkAnswer(user){

@@ -9,6 +9,7 @@
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
+    "koa2-cors": "^2.0.3",
     "mysql": "^2.14.1",
     "vue": "^2.4.4",
     "vue-i18n": "^7.3.1",

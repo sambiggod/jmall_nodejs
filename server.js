@@ -12,6 +12,7 @@ const router = require("koa-router")();
 const bodyParser = require("koa-bodyparser");
 const static = require("koa-static");
 const apiRouter = require("./routers/index");
+const cors = require('koa2-cors')
 
 // push lib function to koa instance
 const app = new koa();
@@ -25,11 +26,8 @@ app.use(static(
     path.join(__dirname, staticPath)
 ));
 
-// config routers
-// const appRouter = new router({
-//     prefix: "jmall"
-// });
-// router.use('/api', api.routes(), api.allowedMethods());
+//支持跨域
+app.use(cors());
 router.use("/jmall", apiRouter.routes(), apiRouter.allowedMethods());
 app.use(router.routes(), router.allowedMethods());
 // app.use( ctx => {

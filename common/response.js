@@ -16,10 +16,11 @@ class ServerResponse{
             message = "";
         if(!data)
             data = {};
-        response.code = code;
-        response.message = message;
-        response.data = data;
-        return response;
+        return {
+          code: code,
+          message: message,
+          result: data
+        };
     }
 
     get code() {
